@@ -1,0 +1,4 @@
+GWT-template
+============
+
+Template project
