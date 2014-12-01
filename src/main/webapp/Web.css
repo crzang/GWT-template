@@ -1,0 +1,321 @@
+/** Add css rules here for your application. */
+
+.gwt-DecoratedTabBar {
+    background: #ccc;
+    padding-top: 6px;
+}
+
+.gwt-DecoratedTabBar .gwt-TabBarFirst {
+    width: 5px; /* first tab distance from the left */
+}
+
+.gwt-DecoratedTabBar .gwt-TabBarRest {
+}
+
+.gwt-DecoratedTabBar .gwt-TabBarItem {
+    border-collapse: collapse;
+    margin-left: 4px;
+}
+
+.gwt-DecoratedTabBar .tabTopCenter {
+    padding: 0px;
+    background: #8E8E8E;
+}
+
+.gwt-DecoratedTabBar .tabTopLeft,
+.gwt-DecoratedTabBar .tabTopRight {
+    padding: 0px;
+    zoom: 1;
+}
+
+.gwt-DecoratedTabBar .tabTopLeftInner,
+.gwt-DecoratedTabBar .tabTopRightInner {
+    width: 3px;
+    height: 3px;
+}
+
+.gwt-DecoratedTabBar .tabTopLeft {
+    background: url(images/circles.png) no-repeat 0px 0px;
+    -background: url(images/circles_ie6.png) no-repeat 0px 0px;
+}
+
+.gwt-DecoratedTabBar .tabTopRight {
+    background: url(images/circles.png) no-repeat -3px 0px;
+    -background: url(images/circles_ie6.png) no-repeat -3px 0px;
+}
+
+.gwt-DecoratedTabBar .tabMiddleLeft,
+.gwt-DecoratedTabBar .tabMiddleRight {
+    width: 3px;
+    padding: 0px;
+    background: #8E8E8E;
+}
+
+.gwt-DecoratedTabBar .tabMiddleLeftInner,
+.gwt-DecoratedTabBar .tabMiddleRightInner {
+    width: 1px;
+    height: 1px;
+}
+
+.gwt-DecoratedTabBar .tabMiddleCenter {
+    padding: 0px 5px 4px 5px;
+    cursor: pointer;
+    cursor: hand;
+    color: #fff;
+    font-weight: normal;
+    text-align: center;
+    background: #8E8E8E;
+}
+
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabTopCenter {
+    background: #fff;
+}
+
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabTopLeft {
+    background: url(images/circles.png) no-repeat -6px 0px;
+    -background: url(images/circles_ie6.png) no-repeat -6px 0px;
+}
+
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabTopRight {
+    background: url(images/circles.png) no-repeat -9px 0px;
+    -background: url(images/circles_ie6.png) no-repeat -9px 0px;
+}
+
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleLeft,
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleRight {
+    background: #fff;
+}
+
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleCenter {
+    cursor: default;
+    background: #fff;
+    color: #333;
+    font-weight: bold;
+}
+
+.gwt-DecoratedTabBar .gwt-TabBarItem-disabled .tabMiddleCenter {
+    cursor: default;
+    color: #999999;
+}
+
+html > body .gwt-DecoratedTabBar {
+}
+
+* html .gwt-DecoratedTabBar .tabTopLeftInner,
+* html .gwt-DecoratedTabBar .tabTopRightInner {
+    width: 3px;
+    height: 3px;
+    overflow: hidden;
+}
+
+.gwt-TabPanel {
+}
+
+.gwt-TabPanelBottom {
+    border-color: #ccc;
+    border-style: solid;
+    border-width: 0px 1px 1px;
+    overflow: hidden;
+    padding: 6px;
+}
+
+.pseudo {
+    color: #2B587A;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.pseudo:hover {
+    color: #35A4D1;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.filterArr {
+    background-color: #E8E8E8;
+    padding-bottom: 25px;
+    padding-top: 25px;
+    cursor: pointer;
+}
+
+.filterArr:hover {
+    background-color: #D0D0D0;
+    padding-bottom: 25px;
+    padding-top: 25px;
+    cursor: pointer;
+}
+
+.filter-selected {
+    background-color: #F4F7FC;
+}
+
+.filter:hover {
+    background-color: #F8F8F8;
+
+}
+
+.headerTitle {
+    color: #FFFFFF;
+    display: block;
+    font-size: 19px;
+    font-weight: 300;
+    line-height: 25px;
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.3), 0 0 3px rgba(0, 0, 0, 0.15);
+    font-family: Tahoma, Helvetica, Arial, sans-serif;
+}
+
+.newSearch:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.tabscrollButton:hover {
+    background-color: #8E8E8E !important;
+    cursor: pointer;
+}
+
+.wordWrap {
+    word-wrap: break-word;
+    padding-left: 60px;
+    padding-right: 20px;
+    padding-top: 0px;
+}
+
+.visitedResult {
+    background: none repeat scroll 0 0 #F5F5F5 !important;
+}
+
+.visitedHeader th {
+    color: #9966cc !important;
+}
+
+.multiSelect {
+    background: none repeat scroll 0 0 #FFFACD !important;
+}
+
+body {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 0 none;
+    color: #000000;
+    direction: ltr;
+    margin: 0px !important;
+    padding: 0;
+}
+
+.detailBorder {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    border: 2px solid rgb(149, 149, 150);
+    padding: 10px;
+    margin: 5px;
+}
+
+.documentHeaderPanel {
+    background: gray;
+    border-bottom: 1px solid;
+}
+
+.yellowInfoPanel {
+    background: #f6d654;
+    /*border-radius: 5px;*/
+    z-index: 1;
+    /*margin-left: 18px;*/
+    position: absolute;
+}
+
+.yellowInfoPanel div {
+    padding-left: 25px;
+}
+
+.unselectable {
+    /* Mozilla FireFox */
+    -moz-user-select: none;
+
+    /* old Safari, old Chrome */
+    -khtml-user-select: none;
+
+    /* new Safari, new Chrome */
+    -webkit-user-select: none;
+
+    /* IE 9-10 */
+    -ms-user-select: none
+
+    /* all css3 */
+user-select : none;
+}
+
+.cellBorderBottomNil {
+    border-bottom: 0px;
+}
+
+.gwt-DecoratedPopupPanel {
+}
+
+.gwt-DecoratedPopupPanel .popupContent {
+    background-color: white;
+}
+
+.gwt-DecoratedPopupPanel .popupTopLeft {
+}
+
+.gwt-DecoratedPopupPanel .popupTopLeftInner {
+}
+
+.gwt-DecoratedPopupPanel .popupTopCenter {
+}
+
+.gwt-DecoratedPopupPanel .popupTopCenterInner {
+    width: auto;
+}
+
+.gwt-DecoratedPopupPanel .popupTopRight {
+}
+
+.gwt-DecoratedPopupPanel .popupTopRightInner {
+    width: auto;
+}
+
+.gwt-DecoratedPopupPanel .popupMiddleLeft {
+}
+
+.gwt-DecoratedPopupPanel .popupMiddleLeftInner {
+}
+
+.gwt-DecoratedPopupPanel .popupMiddleCenter {
+    background-color: white;
+}
+
+.gwt-DecoratedPopupPanel .popupMiddleCenterInner {
+    width: auto;
+}
+
+.gwt-DecoratedPopupPanel .popupMiddleRight {
+}
+
+.gwt-DecoratedPopupPanel .popupMiddleRightInner {
+}
+
+.gwt-DecoratedPopupPanel .popupBottomLeft {
+}
+
+.gwt-DecoratedPopupPanel .popupBottomLeftInner {
+}
+
+.gwt-DecoratedPopupPanel .popupBottomCenter {
+}
+
+.gwt-DecoratedPopupPanel .popupBottomCenterInner {
+}
+
+.gwt-DecoratedPopupPanel .popupBottomRight {
+}
+
+.gwt-DecoratedPopupPanel .popupBottomRightInner {
+}
+
+.gwt-DialogBox .dialogMiddleCenter {
+    overflow: auto;
+    word-break: break-word;
+}

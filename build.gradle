@@ -1,0 +1,173 @@
+buildscript {
+    repositories {
+        maven {
+            url 'http://dl.bintray.com/steffenschaefer/maven'
+        }
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.5'
+    }
+}
+
+apply plugin: 'war'
+apply plugin: 'gwt'
+apply plugin: 'jetty'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    gwtModule = "pro.crzang.web.Web"
+    gwtVersion = "2.6.1"
+    gwtPlatformVersion = "1.3"
+    servletApiVersion = "3.1.0"
+    log4jVersion = "2.1"
+    junitVersion = "4.11"
+    iframeworkVersion="0.4.1"
+}
+
+
+def superDevHost = "127.0.0.1"
+def superDevPort = 9873
+def jettyPort = 8285
+
+jettyRunWar.stopPort = 8090
+jettyRunWar.stopKey = 'stopKey'
+jettyStop.stopPort = 8090
+jettyStop.stopKey = 'stopKey'
+jettyRun.stopPort = 8090
+jettyRun.stopKey = 'stopKey'
+
+dependencies {
+
+    // GWT-related dependencies
+    providedCompile "com.google.gwt:gwt-user:$gwtVersion"
+    compile "com.google.gwt:gwt-dev:$gwtVersion"
+    runtime "com.google.gwt:gwt-servlet:$gwtVersion"
+
+    // Needed for GWT compile and at runtime for RequestBuilder
+    // Specify two artifacts as workaround for GRADLE-1934
+    compile('javax.validation:validation-api:1.0.0.GA') {
+        artifact {
+            name = 'validation-api'
+            type = 'jar'
+        }
+        artifact {
+            name = 'validation-api'
+            type = 'jar'
+            classifier = 'sources'
+        }
+    }
+    runtime "pro.redsoft.iframework:iframework-gwtpx:$iframeworkVersion"
+    compile "pro.redsoft.iframework:iframework-gwtpx-servlet:$iframeworkVersion"
+    // Servlet API, serializers
+    compile "javax.servlet:javax.servlet-api:$servletApiVersion"
+
+    compile("org.apache.logging.log4j:log4j-api:$log4jVersion")
+    // compile 'org.apache.logging.log4j:log4j-web:2.+'
+
+    // Test frameworks & libs
+    testCompile "junit:junit:$junitVersion"
+    runtime 'com.google.gwt:gwt-codeserver:2.6.0'
+     compile 'com.gwtplatform:gwtp-dispatch-client:1.0.3'
+     compile 'com.gwtplatform:gwtp-dispatch-rpc-shared:1.3.1'
+     compile 'com.gwtplatform:gwtp-dispatch-server-guice:1.0.3'
+     compile 'com.google.inject.extensions:guice-servlet:3.0'
+
+
+}
+
+clean.doLast { ant.delete(dir: "gwt-unitCache") }
+
+//task wrapper(type: Wrapper) { gradleVersion = '2.1' }
+
+configurations {
+    spi
+}
+
+gwt {
+    modules "$gwtModule"
+
+    compiler {
+        strict = false;
+        enableClosureCompiler = false;
+        disableClassMetadata = true;
+        disableCastChecking = true;
+    }
+}
+
+task createDirs << {
+    sourceSets*.java.srcDirs*.each { it.mkdirs() }
+    sourceSets*.resources.srcDirs*.each { it.mkdirs() }
+    webAppDir.mkdirs()
+}
+
+task initProject << {
+    File oldSource = file("./src")
+    File tmpSource = file("./tmp")
+    tmpSource.mkdirs()
+
+    oldSource.listFiles().each { File f -> f.renameTo new File(tmpSource, f.name) }
+
+    sourceSets*.java.srcDirs*.each { it.mkdirs() }
+    sourceSets*.resources.srcDirs*.each { it.mkdirs() }
+    webAppDir.mkdirs()
+
+    File newSource = file(sourceSets.main.java.srcDirs.iterator().next())
+
+    tmpSource.listFiles().each { File f -> f.renameTo new File(newSource, f.name) }
+
+    tmpSource.delete()
+}
+
+jettyRunWar {
+    httpPort = jettyPort
+    contextPath = "expert"
+}
+
+
+task startSuperDev(dependsOn: classes, type: JavaExec) {
+
+    doFirst {
+        File startPage = file("$sourceSets.main.output.resourcesDir/WebDev.html")
+        File outPage = file("$webAppDir/WebSuperDev.html")
+        if (outPage.exists()) {
+            outPage.delete()
+        }
+        outPage.createNewFile();
+        startPage.eachLine {
+            it = it.replace("superDevHost", superDevHost).replace("superDevPort", "$superDevPort")
+            outPage.append(it)
+            outPage.append("\n")
+        }
+        compileGwt.execute()
+        war.execute()
+        jettyRunWar.daemon = true
+        jettyRunWar.execute()
+        println "\nOpen address " +
+                "http://localhost:$jettyPort/expert/WebSuperDev.html\n"
+    }
+
+    main = 'com.google.gwt.dev.codeserver.CodeServer'
+    classpath {
+        [
+                sourceSets.main.java.srcDirs,           // Java source
+                sourceSets.main.output.resourcesDir,    // Generated resources
+                sourceSets.main.runtimeClasspath,       // Deps
+        ]
+    }
+    args =
+            [
+                    "-port", superDevPort,
+                    "-bindAddress", superDevHost,
+                    gwtModule,
+
+            ]
+    maxHeapSize = '512M'
+
+    doLast {
+        jettyStop.execute()
+    }
+}

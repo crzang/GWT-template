@@ -1,0 +1,26 @@
+<configuration>
+    <appenders>
+
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+
+        <RollingFile name="RollingFile" fileName="logs/validation.log"
+                     filePattern="logs/$${date:yyyy-MM}/validation-%d{MM-dd-yyyy}-%i.log.gz">
+            <PatternLayout>
+                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <OnStartupTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="1 MB"/>
+            </Policies>
+        </RollingFile>
+    </appenders>
+    <loggers>
+        <root level="error">
+            <appender-ref ref="console"/>
+            <appender-ref ref="RollingFile" level="error"/>
+        </root>
+    </loggers>
+</configuration>
