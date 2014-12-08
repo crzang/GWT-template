@@ -1,0 +1,62 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+    <ui:style type='pro.crzang.web.client.components.tablayout.RoundTab.Style'>
+        .tab {
+            float: left;
+            margin-right: 8px;
+            cursor: pointer;
+        }
+
+        .tab a, .tab a:visited, .tab a:hover {
+            text-decoration: none;
+            cursor: pointer;
+            cursor: hand;
+            color: black;
+        }
+
+        .tab_inner {
+            margin: 0px;
+            padding: 0px 13px;
+        }
+
+        .active {
+            background-color: gray;
+            color: white;
+        }
+
+        .inactive {
+            background-color: lightgray;
+            color:#000000;
+        }
+
+        .round1, .round2, .round4 {
+            font-size: 0px;
+            height: 1px;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .round1 {
+            border-left: 1px solid white;
+            border-right: 1px solid white;
+        }
+
+        .round2 {
+            border-left: 2px solid white;
+            border-right: 2px solid white;
+        }
+
+        .round4 {
+            border-left: 4px solid white;
+            border-right: 4px solid white;
+        }
+    </ui:style>
+    <g:HTMLPanel addStyleNames="{style.tab} {style.inactive}">
+        <div class="{style.round4}"/>
+        <div class="{style.round2}"/>
+        <div class="{style.round1}"/>
+        <div class="{style.tab_inner}">
+            <g:Label ui:field="label"/>
+        </div>
+    </g:HTMLPanel>
+</ui:UiBinder>
